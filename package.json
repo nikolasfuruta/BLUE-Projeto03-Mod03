@@ -1,0 +1,29 @@
+{
+  "name": "BLUE-Projeto03-Mod03",
+  "version": "1.0.0",
+  "description": "Repositório do Projeto 03 do Mod 03",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js",
+    "dev":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikolasfuruta/BLUE-Projeto03-Mod03.git"
+  },
+  "keywords": [],
+  "author": "Nikolas Furuta e Pedro Seibel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikolasfuruta/BLUE-Projeto03-Mod03/issues"
+  },
+  "homepage": "https://github.com/nikolasfuruta/BLUE-Projeto03-Mod03#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  }
+}
