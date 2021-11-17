@@ -1,4 +1,6 @@
 const express = require("express");  
+const rotas = require('./api/routes/index')
+
 const app = express();  
 require('dotenv').config(); 
 const cors = require("cors");  
@@ -10,6 +12,7 @@ Conn();
 
 app.use(cors());
 app.options("*", cors()); 
+rotas(app)
 
 app.get('/', (req,res) => {
     res.status(200).json({message:"API ok"});
