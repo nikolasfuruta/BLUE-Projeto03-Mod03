@@ -7,5 +7,6 @@ const schemaCasa = new mongoose.Schema({
     imagemURL: { type: String, required: true},
 });
 
-module.exports = mongoose.model("casas" , schema);
+const Casa = mongoose.model("casas", schemaEscritorio);
 
+module.exports = Casa;
