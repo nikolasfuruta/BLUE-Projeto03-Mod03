@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const schemaCasa = new mongoose.Schema({
+const schemaTerreno = new mongoose.Schema({
     tipo: { type: String, required: true},
     localizacao: { type: String, required: true},
     valor: { type: Number, required: true},
     imagemURL: { type: String, required: true},
 });
 
-const Casa = mongoose.model("casas", schemaCasa);
+const Terreno = mongoose.model("terrenos", schemaTerreno);
 
-module.exports = Casa;
+module.exports = Terreno;
