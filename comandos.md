@@ -22,5 +22,9 @@ git push origin main
 ## PUXAR OS DADOS
 git pull origin main
 
+## COLOCAR AS ALTERAÇÕES DE UMA BRANCH FILHA PARA O MAIN
+entrar na branch main
+git merge [nome da branch filha] 
+
 ## LISTAR TODOS OS COMMITS
 git log
