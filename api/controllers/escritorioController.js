@@ -1,4 +1,4 @@
-const Casa = require('../models/casaSchema');
+const Escritorio = require('../models/escritorioSchema');
 
 
 exports.adicionar = async (req,res) => {
@@ -16,7 +16,7 @@ exports.adicionar = async (req,res) => {
             res.status(400).json({message: "URL da imagem esta vazio"});
             return;
         };
-        const result = await Casa.create(req.body)
+        const result = await Escritorio.create(req.body)
         return res.status(201).json(result)
     } catch(err){
         console.error(err.message)
@@ -26,7 +26,7 @@ exports.adicionar = async (req,res) => {
 
 exports.listarTudo = async (req,res) => {
     try{
-        const result = await Casa.find({})
+        const result = await Escritorio.find({})
         return res.status(200).json(result)
     } catch(err){
         console.error(err.message)
@@ -40,7 +40,7 @@ exports.buscaPorId = async (req,res) => {
             res.status(400).json({message: "Parâmetro incorreto"});
             return
         }
-        const result = await Casa.findById({_id:req.params.id})
+        const result = await Escritorio.findById({_id:req.params.id})
         return res.status(200).json(result)
     } catch(err){
         console.error(err.message)
@@ -54,7 +54,7 @@ exports.apagar = async (req,res) => {
             res.status(400).json({message: "Parâmetro incorreto"});
             return
         }
-        await Casa.findByIdAndDelete({_id:req.params.id})
+        await Escritorio.findByIdAndDelete({_id:req.params.id})
         return res.status(200).json({message:"Deletado com sucesso"})
     } catch(err){
         console.error(err.message)
@@ -81,7 +81,7 @@ exports.atualizar = async (req,res) => {
             res.status(400).json({message: "URL da imagem esta vazio"});
             return;
         };
-        const result = await Casa.findByIdAndUpdate({_id:req.params.id}, req.body)
+        const result = await Escritorio.findByIdAndUpdate({_id:req.params.id}, req.body)
         return res.status(200).json({message:"Atualizado com sucesso"})
     } catch(err){
         console.error(err.message)
