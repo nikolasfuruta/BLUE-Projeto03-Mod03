@@ -23,3 +23,27 @@ exports.adicionar = async (req,res) => {
         return res.status(400).json({message:"ERRO"})
     }
 }
+
+exports.listarTudo = async (req,res) => {
+    try{
+        const result = await Casa.find({})
+        return res.status(201).json(result)
+    } catch(err){
+        console.error(err.message)
+        return res.status(400).json({message:"ERRO"})
+    }
+}
+
+exports.buscaPorId = async (req,res) => {
+    try{
+        if(req.params.id.length != 24){
+            res.status(400).json({message: "Par"});
+            return
+        }
+        const result = await Casa.findById({_id:id})
+        return res.status(201).json(result)
+    } catch(err){
+        console.error(err.message)
+        return res.status(400).json({message:"ERRO"})
+    }
+}
