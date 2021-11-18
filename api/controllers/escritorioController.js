@@ -1,4 +1,4 @@
-const Casa = require('../models/casaSchema');
+const Casa = require('../models/escritorioSchema');
 
 
 exports.adicionar = async (req,res) => {
