@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"client":"Thunder Client","environmentName":"projeto03","dateExported":"2021-11-18T01:47:40.178Z","version":"1.0","variables":[{"name":"uriCasa","value":"http://localhost:3001/casas"}]}
-=======
-{"client":"Thunder Client","environmentName":"projeto03","dateExported":"2021-11-18T02:00:45.698Z","version":"1.0","variables":[{"name":"uriCasa","value":"http://localhost:3001/casas"},{"name":"uriTerreno","value":"http://localhost:3001/terrenos"},{"name":"uriGalpao","value":"http://localhost:3001/galpao"}]}
->>>>>>> 7e2ce35507da1577f7c7a293653d3f8639a2e2e1
+{"client":"Thunder Client","environmentName":"projeto03","dateExported":"2021-11-18T23:13:20.926Z","version":"1.0","variables":[{"name":"uriCasa","value":"http://localhost:3001/casas"},{"name":"uriTerreno","value":"http://localhost:3001/terrenos"},{"name":"uriGalpao","value":"http://localhost:3001/galpao"}]}
