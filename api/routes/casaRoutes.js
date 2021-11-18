@@ -1,6 +1,6 @@
-const CasaController = require('')
-const { Router } = require('express');
-const router = Router()
+const CasaController = require('../controllers/casaController');
+const express = require('express')
+const router = express.Router()
 
 // router.get('/listall', CasaController.listarTudo)
 // router.get('/listid/:id', CasaController.buscaPorId)
