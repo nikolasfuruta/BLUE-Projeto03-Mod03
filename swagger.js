@@ -14,4 +14,4 @@ const doc = {
 swaggerAutogen(swaggerJson, endPoints)
 .then(()=>{
     require('./index.js')
-})
+})  
