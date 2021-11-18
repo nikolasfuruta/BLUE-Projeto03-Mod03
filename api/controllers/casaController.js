@@ -37,10 +37,10 @@ exports.listarTudo = async (req,res) => {
 exports.buscaPorId = async (req,res) => {
     try{
         if(req.params.id.length != 24){
-            res.status(400).json({message: "Par"});
+            res.status(400).json({message: "Parâmetro incorreto"});
             return
         }
-        const result = await Casa.findById({_id:id})
+        const result = await Casa.findById({_id:req.params.id})
         return res.status(201).json(result)
     } catch(err){
         console.error(err.message)
