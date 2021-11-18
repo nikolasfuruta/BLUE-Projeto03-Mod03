@@ -2,13 +2,14 @@ const express = require("express");
 const rotas = require('./api/routes/index')
 
 const app = express();  
-require('dotenv').config(); 
+
+const Conn = require("./api/models/conn/index"); 
+Conn(); 
+
 const cors = require("cors");  
+
 app.use(express.json());  
 const port = process.env.PORT||3001
-const Conn = require("./api/models/conn/index"); 
-
-Conn(); 
 
 app.use(cors());
 app.options("*", cors()); 
