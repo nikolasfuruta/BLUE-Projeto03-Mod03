@@ -1,23 +1,22 @@
 const express = require("express");  
-const rotas = require('./api/routes/index')
+const rotas = require('./api/routes/index');
+const Conn = require("./api/models/conn/index");
+const cors = require("cors");  
+const swaggerUi = require("swagger-ui-express");
+const swaggerDoc = require("./swagger.json");
+
 
 const app = express();  
-
-const Conn = require("./api/models/conn/index"); 
 Conn(); 
 
-const cors = require("cors");  
-
 app.use(express.json());  
-const port = process.env.PORT||3001
-
 app.use(cors());
 app.options("*", cors()); 
-rotas(app)
+app.use("/docs",swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
-app.get('/', (req,res) => {
-    res.status(200).json({message:"API ok"});
-});
+rotas(app);
+
+const port = process.env.PORT||3001;
 app.listen(port, ()=>{
-    console.log(`SERVER RUNNING AT PORT ${port}`)
+    console.log(`SERVER RUNNING AT PORT ${port}`);
 })
