@@ -550,7 +550,7 @@ async function Conn(){
 ```javascript
 const mongoose = require("mongoose");  //importando o mongoose
 
-const casasModel = new mongoose.Schema({ //criando nosso modelo do banco
+const schemaCasa = new mongoose.Schema({ //criando nosso modelo do banco
     // chave/ valor: tipo do valor e se é obrigatorio
     tipo: { type: String, required: true },
     localizacao: { type: String, required: true }, 
@@ -558,7 +558,7 @@ const casasModel = new mongoose.Schema({ //criando nosso modelo do banco
     imagemUrl: { type: String, required: true } 
 });
 
-const Casas = mongoose.model("Casas",casasModel); // a criacao do modelo na colection Casas
+const Casas = mongoose.model("Casas",schemaCasa); // a criacao do modelo na colection Casas
 
 module.exports = Casas; //exportando o modelo pronto
 ```
@@ -568,14 +568,14 @@ module.exports = Casas; //exportando o modelo pronto
 ```javascript
 const mongoose = require("mongoose"); 
 
-const apartamentosModel = new mongoose.Schema({  
+const schemaApartamento = new mongoose.Schema({  
     tipo: { type: String, required: true },
     localizacao: { type: String, required: true }, 
     valor: { type: String, required: true },
     imagemUrl: { type: String, required: true } 
 });
 
-const Apartamentos = mongoose.model("Apartamentos", apartamentosModel); 
+const Apartamentos = mongoose.model("Apartamentos", schemaApartamento); 
 
 module.exports = Apartamentos; 
 ```
@@ -585,14 +585,14 @@ module.exports = Apartamentos;
 ```javascript
 const mongoose = require("mongoose"); 
 
-const terrenosModel = new mongoose.Schema({ 
+const schemaTerreno = new mongoose.Schema({ 
     tipo: { type: String, required: true },
     localizacao: { type: String, required: true }, 
     valor: { type: String, required: true },
     imagemUrl: { type: String, required: true } 
 });
 
-const Terrenos = mongoose.model("Terrenos", terrenosModel); 
+const Terrenos = mongoose.model("Terrenos", schemaTerreno); 
 
 module.exports = Terrenos; 
 ```
@@ -604,14 +604,14 @@ module.exports = Terrenos;
 ```javascript
 const mongoose = require("mongoose"); 
 
-const galpaoModel = new mongoose.Schema({ 
+const schemaGalpao = new mongoose.Schema({ 
     tipo: { type: String, required: true },
     localizacao: { type: String, required: true }, 
     valor: { type: String, required: true },
     imagemUrl: { type: String, required: true } 
 });
 
-const Galpao = mongoose.model("Galpao", galpaoModel); 
+const Galpao = mongoose.model("Galpao", schemaGalpao); 
 
 module.exports = Galpao; 
 ```
@@ -623,21 +623,21 @@ module.exports = Galpao;
 ```javascript
 const mongoose = require("mongoose"); 
 
-const escritoriosModel = new mongoose.Schema({ 
+const schemaEscritorio = new mongoose.Schema({ 
     tipo: { type: String, required: true },
     localizacao: { type: String, required: true }, 
     valor: { type: String, required: true },
     imagemUrl: { type: String, required: true } 
 });
 
-const Escritorios = mongoose.model("Escritorios", escritoriosModel); 
+const Escritorios = mongoose.model("Escritorios", schemaEscritorio); 
 
 module.exports = Escritorios; 
 ```
 
 
 
-Lembrando que a **const casasModel = new mongoose.Schema({ });** cria uma API em seu banco automaticamente caso não exista.
+Lembrando que a **const schemaCasa = new mongoose.Schema({ });** cria uma API em seu banco automaticamente caso não exista.
 
 
 
