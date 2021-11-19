@@ -1,4 +1,4 @@
-const Apartamento = require('../models/ApartamentoSchema');
+const Apartamento = require('../models/apartamentoSchema');
 
 
 exports.adicionar = async (req,res) => {
