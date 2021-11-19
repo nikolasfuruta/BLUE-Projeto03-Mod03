@@ -10,9 +10,9 @@
 
  **Rota Terrenos.**
 
- **Rota Escritorios.**
+ **Rota Escritórios.**
 
- **Rota Galpao.**
+ **Rota Galpões.**
 
 
 
@@ -95,7 +95,7 @@
 
   
 
-​       `/listid/:id` 
+​       `/listid/:id`
 
 - **/:id  , Na url precisamos passar o id do item que deseja visualizar.**  
 
@@ -163,7 +163,7 @@
 
   
 
-​      `/delete/:id`
+​    `/delete/:id`
 
 - **/:id  , Na url precisamos passar o id do item em que deseja deletar, sendo esse FIXO, INALTERÁVEL**
 
@@ -189,31 +189,31 @@
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-**A rota estados  `/estados`**  **, necessita de:**
+**A rota escritórios  `/escritorios`**  **, necessita de 5 sub-rotas sendo elas:**
 
-				**`/add`** 
+​       `/add`
 
-- **Exemplo:**    `/estados/add`
+- **Exemplo:**    `/escritorios/add`
 
-- **Usado para adicionar um novo estado ao banco de dados na nuvem.**
+- **Usado para adicionar um novo escritório ao banco de dados na nuvem.**
 
-- **Para adicionar um estado dentro do banco, necessita passar todos os dados com suas devidas informações a seguir:**
+- **Para adicionar um escritório dentro do banco, necessita passar todos os dados com suas devidas informações a seguir:**
 
   ```javascript
   {
-  "nome": "São Paulo",
-  "regiao": "Sudeste",
-  "populacao":  "12,33 milhões",
-  "valsalmin": "R$ 1.108,38"
+  	"tipo": "Escritórios", //(Type: String)
+  	"localizacao":  "Condmn, Industrial ABC", //(Type: String)
+  	"valor": 350.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
   }
   ```
 
   
 
-- **Se for adicionado retornará um .json com uma mensagem de confirmação e um status 200.**
+- **Se for adicionado retornará um .json com todas as informações cadastradas e um status 201.**
 
   ```javascript
-  res.status(200).json({message: "Cadastrado com sucesso"});
+  res.status(201).json(result);
   ```
 
   
@@ -221,29 +221,29 @@
 - **Caso contrário não for inserido no banco, retornará uma mensagem de erro e um status 400.**
 
   ```javascript
-  res.status(400).json({message: "Algo esta errado"});
+  res.status(400).json({message: "ERRO"});
   ```
 
 
 
-				**`/listall`** 
+​        **`/listall`**
 
-- **Usado para visualizar todos os países cadastrados no banco.**
+- **Usado para visualizar todos os escritórios cadastrados no banco.**
 
-- **Exemplo:**    `/estados/listall`
+- **Exemplo:**    `/escritorios/listall`
 
-- **Após ser executado, retornará um .json com todos os países INCLUINDO UM ID, cada estado possui seu ID criado automaticamente pelo banco.**
+- **Após ser executado, retornará um .json com todos os escritórios INCLUINDO UM ID, cada estado possui seu ID criado automaticamente pelo banco.**
 
   ```javascript
   {
-      "_id": "6189d1efaf6fac25f2977dfb",
-      "nome": "São Paulo",
-      "regiao": "Sudeste",
-      "populacao": "12,33 milhões",
-      "valsalmin": "R$ 1.108,38",
-      "dataCriacao": "2021-11-09T01:42:07.594Z",
+      "_id": "6189d7fb374b2b5c405cf5c1",
+  	"tipo": "Escritórios", //(Type: String)
+  	"localizacao":  "Condmn, Industrial ABC", //(Type: String)
+  	"valor": 350.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+      "dataCriacao": "2021-11-09T02:07:55.479Z",
       "__v": 0
-    },
+  }
   ```
 
 - **Caso não tenha nada cadastrado no banco, irá retornar um .json vazio.**
@@ -254,7 +254,7 @@
 
   
 
-				**`/listname/:nome`** 
+	`/listid/:id`
 
 - **/:nome  , Na url precisamos passar o nome do item que deseja visualizar.**  
 
