@@ -32,7 +32,7 @@
 
 **A rota casas  `/casas`**  **, necessita de 5 sub-rotas sendo elas:**
 
-​        `/add`
+   `/add`
 
 - **Usado para adicionar uma nova casa ao banco de dados na nuvem.**
 
@@ -158,7 +158,7 @@
 - **Caso  não seja atualizado no banco, retornará uma mensagem de erro e um status 400.**
 
   ```javascript
-  res.status(400).json({message: "Algo esta errado"});
+  res.status(400).json({message: "ERRO"});
   ```
 
   
@@ -182,12 +182,327 @@
 - **Porém se o ID passado na url não existir no banco, ele não irá achar nada para deletar assim retornando uma mensagem de erro com status 400.**
 
   ```javascript
-  res.status(400).json({message: "Algo esta errado"});
+  res.status(400).json({message: "ERRO"});
   ```
 
 
 
------------------------------------------------------------------------------------------------------------------------------------------------------
+**A rota terrenos  `/terrenos`**  **, necessita de 5 sub-rotas sendo elas:**
+
+   `/add`
+
+- **Usado para adicionar um nova terreno ao banco de dados na nuvem.**
+
+- **Exemplo:**    `/terreno/add`
+
+- **Para adicionar um terreno dentro do banco, necessita passar todos os dados com suas devidas informações a seguir:**
+
+  ```javascript
+  {
+  	"tipo": "Terreno", //(Type: String)
+  	"localizacao":  "Rua ABC", //(Type: String)
+  	"valor": 50.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+  }
+  ```
+
+  
+
+- **Se for adicionado retornará um .json com todas as informações cadastradas e um status 201.**
+
+  ```javascript
+  res.status(201).json(result);
+  ```
+
+  
+
+- **Caso  não seja inserido no banco, retornará uma mensagem de erro e um status 400.**
+
+  ```javascript
+  res.status(400).json({message: "ERRO"});
+  ```
+
+
+
+​        `/listall`	
+
+- **Usado para visualizar todos os terrenos cadastrados no banco.**
+
+- **Exemplo:**    `/terrenos/listall`
+
+- **Após ser executado, retornará um .json com todos os terrenos INCLUINDO UM ID, cada terreno possui seu ID criado automaticamente pelo banco.**
+
+  ```javascript
+  {
+      "_id": "6189d7fb374b2b5c405cf5c1",
+      "tipo": "Terreno", //(Type: String)
+  	"localizacao":  "Rua ABC", //(Type: String)
+  	"valor": 50.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+      "dataCriacao": "2021-11-09T02:07:55.479Z",
+      "__v": 0
+  }
+  ```
+
+- **Caso não tenha nada cadastrado no banco, irá retornar um .json vazio.**
+
+  ```javascript
+  [];
+  ```
+
+  
+
+​       `/listid/:id` 
+
+- **/:id  , Na url precisamos passar o id do item que deseja visualizar.**  
+
+  **Exemplo:**      `/terrenos/listid/6189d7fb374b2b5c405cf5c1`
+
+  ```javascript
+  {
+      "_id": "6189d7fb374b2b5c405cf5c1",
+      "tipo": "Casa", //(Type: String)
+  	"localizacao":  "Rua ABC", //(Type: String)
+  	"valor": 50.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+      "dataCriacao": "2021-11-09T02:07:55.479Z",
+      "__v": 0
+  }
+  ```
+
+  
+
+- **Usado quando o usuário deseja achar uma terreno específico usando apenas seu ID, sem necessitar de outras informações.**
+
+- **Caso não exista nenhum terreno cadastrado no banco com o ID procurado, irá retornar um código de erro.**
+
+  ```javascript
+  res.status(204).json({message: "ERRO"});
+  ```
+
+
+
+​        `/update/:id`
+
+- **/:id  , Na url precisamos passar o id do item em que deseja atualizar, sendo esse FIXO, INALTERÁVEL**
+
+  **Exemplo:**      `/terrenos/update/6189d7fb374b2b5c405cf5c1`
+
+- **Usado para atualizar informações já existentes no banco de dados na nuvem.**
+
+- **Para atualizar esses dados é necessário passar todos os dados a seguir COM O ID FIXO (NÃO MUDA), porém com as novas informações que você deseja atualizar:**
+
+  ```javascript
+  {
+      "_id": "6189d7fb374b2b5c405cf5c1",
+      "tipo": "Terreno", //(Type: String)
+  	"localizacao":  "Rua ABC", //(Type: String)
+  	"valor": 85.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+      "dataCriacao": "2021-11-09T02:07:55.479Z",
+      "__v": 0
+  }
+  ```
+
+  
+
+- **Se for atualizado retornará um .json com uma mensagem de confirmação e um status 200.**
+
+  ```javascript
+  res.status(200).json({message: "Atualizado com sucesso"});
+  ```
+
+- **Caso  não seja atualizado no banco, retornará uma mensagem de erro e um status 400.**
+
+  ```javascript
+  res.status(400).json({message: "ERRO"});
+  ```
+
+  
+
+​      `/delete/:id`
+
+- **/:id  , Na url precisamos passar o id do item em que deseja deletar, sendo esse FIXO, INALTERÁVEL**
+
+  **Exemplo:**      `/terreno/delete/6189d7fb374b2b5c405cf5c1`
+
+- **Utilizamos o delete quando queremos remover alguma casa já cadastrada no banco.**
+
+- **Caso o ID passado exista no banco, ele irá remove-lô do banco, ação irreversível e retornará uma mensagem de confirmação com o status 200.**
+
+  ```javascript
+  res.status(200).json({message: "Deletado com sucesso"});
+  ```
+
+  
+
+- **Porém se o ID passado na url não existir no banco, ele não irá achar nada para deletar assim retornando uma mensagem de erro com status 400.**
+
+  ```javascript
+  res.status(400).json({message: "ERRO"});
+  ```
+
+
+
+
+- **A rota galpao `/galpao`**  **, necessita de 5 sub-rotas sendo elas:**
+
+  `/add`
+
+  - **Usado para adicionar um novo galpão ao banco de dados na nuvem.**
+
+  - **Exemplo:**    `/galpao/add`
+
+  - **Para adicionar um galpão dentro do banco, necessita passar todos os dados com suas devidas informações a seguir:**
+
+    ```javascript
+    {
+    	"tipo": "Galpao", //(Type: String)
+    	"localizacao":  "Rua ABC", //(Type: String)
+    	"valor": 500.000.00, //(Type: Number)
+    	"imagemUrl": "http://teste.jpeg" //(Type: String)
+    }
+    ```
+
+    
+
+  - **Se for adicionado retornará um .json com todas as informações cadastradas e um status 201.**
+
+    ```javascript
+    res.status(201).json(result);
+    ```
+
+    
+
+  - **Caso contrário não for inserido no banco, retornará uma mensagem de erro e um status 400.**
+
+    ```javascript
+    res.status(400).json({message: "ERRO"});
+    ```
+
+  
+
+  ​        `/listall`	
+
+  - **Usado para visualizar todas os galpões cadastrados no banco.**
+
+  - **Exemplo:**    `/galpao/listall`
+
+  - **Após ser executado, retornará um .json com todas os galpões INCLUINDO UM ID, cada galpão possuindo seu ID criado automaticamente pelo banco.**
+
+    ```javascript
+    {
+        "_id": "6189d7fb374b2b5c405cf5c1",
+        "tipo": "Galpão", //(Type: String)
+    	"localizacao":  "Rua ABC", //(Type: String)
+    	"valor": 500.000.00, //(Type: Number)
+    	"imagemUrl": "http://teste.jpeg" //(Type: String)
+        "dataCriacao": "2021-11-09T02:07:55.479Z",
+        "__v": 0
+    }
+    ```
+
+  - **Caso não tenha nada cadastrado no banco, irá retornar um .json vazio.**
+
+    ```javascript
+    [];
+    ```
+
+    
+
+  ​       `/listid/:id` 
+
+  - **/:id  , Na url precisamos passar o id do item que deseja visualizar.**  
+
+    **Exemplo:**      `/galpao/listid/6189d7fb374b2b5c405cf5c1`
+
+    ```javascript
+    {
+        "_id": "6189d7fb374b2b5c405cf5c1",
+        "tipo": "Galpao", //(Type: String)
+    	"localizacao":  "Rua ABC", //(Type: String)
+    	"valor": 500.000.00, //(Type: Number)
+    	"imagemUrl": "http://teste.jpeg" //(Type: String)
+        "dataCriacao": "2021-11-09T02:07:55.479Z",
+        "__v": 0
+    }
+    ```
+
+    
+
+  - **Usado quando o usuário deseja achar um galpão específico usando apenas seu ID, sem necessitar de outras informações.**
+
+  - **Caso não exista nenhum galpão cadastrado no banco com o ID procurado, irá retornar um código de erro.**
+
+    ```javascript
+    res.status(204).json({message: "ERRO"});
+    ```
+
+  
+
+  ​        `/update/:id`
+
+  - **/:id  , Na url precisamos passar o id do item em que deseja atualizar, sendo esse FIXO, INALTERÁVEL**
+
+    **Exemplo:**      `/galpao/update/6189d7fb374b2b5c405cf5c1`
+
+  - **Usado para atualizar informações já existentes no banco de dados na nuvem.**
+
+  - **Para atualizar esses dados é necessário passar todos os dados a seguir COM O ID FIXO (NÃO MUDA), porém com as novas informações que você deseja atualizar:**
+
+    ```javascript
+    {
+        "_id": "6189d7fb374b2b5c405cf5c1",
+        "tipo": "Galpao", //(Type: String)
+    	"localizacao":  "Rua ABC", //(Type: String)
+    	"valor": 200.000.00, //(Type: Number)
+    	"imagemUrl": "http://teste.jpeg" //(Type: String)
+        "dataCriacao": "2021-11-09T02:07:55.479Z",
+        "__v": 0
+    }
+    ```
+
+    
+
+  - **Se for atualizado retornará um .json com uma mensagem de confirmação e um status 200.**
+
+    ```javascript
+    res.status(200).json({message: "Atualizado com sucesso"});
+    ```
+
+  - **Caso  não seja atualizado no banco, retornará uma mensagem de erro e um status 400.**
+
+    ```javascript
+    res.status(400).json({message: "ERRO"});
+    ```
+
+    
+
+  ​      `/delete/:id`
+
+  - **/:id  , Na url precisamos passar o id do item em que deseja deletar, sendo esse FIXO, INALTERÁVEL**
+
+    **Exemplo:**      `/galpao/delete/6189d7fb374b2b5c405cf5c1`
+
+  - **Utilizamos o delete quando queremos remover alguma casa já cadastrada no banco.**
+
+  - **Caso o ID passado exista no banco, ele irá remove-lô do banco, ação irreversível e retornará uma mensagem de confirmação com o status 200.**
+
+    ```javascript
+    res.status(200).json({message: "Deletado com sucesso"});
+    ```
+
+    
+
+  - **Porém se o ID passado na url não existir no banco, ele não irá achar nada para deletar assim retornando uma mensagem de erro com status 400.**
+
+    ```javascript
+    res.status(400).json({message: "ERRO"});
+    
+    ```
+  
+
+
 
 **A rota escritórios  `/escritorios`**  **, necessita de 5 sub-rotas sendo elas:**
 
@@ -254,29 +569,29 @@
 
   
 
-	`/listid/:id`
+  `/listid/:id`
 
 - **/:nome  , Na url precisamos passar o nome do item que deseja visualizar.**  
 
-  **Exemplo:**      `/estados/listname/São Paulo`
+  **Exemplo:**      `/escritorios/listid/6189d7fb374b2b5c405cf5c1`
 
   ```javascript
   {
-      "_id": "6189d1efaf6fac25f2977dfb",
-      "nome": "São Paulo",
-      "regiao": "Sudeste",
-      "populacao": "12,33 milhões",
-      "valsalmin": "R$ 1.108,38",
-      "dataCriacao": "2021-11-09T01:42:07.594Z",
+      "_id": "6189d7fb374b2b5c405cf5c1",
+  	"tipo": "Escritórios", //(Type: String)
+  	"localizacao":  "Condmn, Industrial ABC", //(Type: String)
+  	"valor": 350.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+      "dataCriacao": "2021-11-09T02:07:55.479Z",
       "__v": 0
-    },
+  }
   ```
 
   
 
-- **Usado quando o usuário deseja achar um país específico usando apenas seu nome, sem necessitar de outras informações.**
+- **Usado quando o usuário deseja achar um escritório específico usando apenas seu nome, sem necessitar de outras informações.**
 
-- **Caso não exista nenhum país cadastrado no banco com o nome procurado, irá retornar um código de erro.**
+- **Caso não exista nenhum escritório cadastrado no banco com o nome procurado, irá retornar um código de erro.**
 
   ```javascript
   res.status(204).json({message: "Nada foi encontrado"});
@@ -284,11 +599,11 @@
 
 
 
-			**`/update/:id`** 
+​        `/update/:id`
 
 - **/:id  , Na url precisamos passar o id do item em que deseja atualizar, sendo esse FIXO, INALTERÁVEL**
 
-  **Exemplo:**      `/estados/update/6189d1efaf6fac25f2977dfb`
+  **Exemplo:**      `/escritorios/update/6189d7fb374b2b5c405cf5c1`
 
 - **Usado para atualizar informações já existentes no banco de dados na nuvem.**
 
@@ -296,13 +611,164 @@
 
   ```javascript
   {
-  "_id": "6189d1efaf6fac25f2977dfb",
-  "nome": "",
-  "regiao": "",
-  "populacao": "",
-  "valsalmin": "",
-  "dataCriacao": "2021-11-09T01:42:07.594Z",
-  "__v": 0
+  "tipo": "", //(Type: String)
+  "localizacao":  "", //(Type: String)
+  "valor": , //(Type: Number)
+  "imagemUrl": "" //(Type: String)
+  }
+  ```
+
+  
+
+- **Se for atualizado retornará um .json com uma mensagem de confirmação e um status 200.**
+
+  ```javascript
+  res.status(200).json({message: "Atualizado com sucesso"});
+  ```
+
+- **Caso contrário não for atualizado no banco, retornará uma mensagem de erro e um status 400.**
+
+  ```javascript
+  return res.status(400).json({message:"ERRO"})
+  ```
+
+  
+
+  ​        `/delete/:id`
+
+- **/:id  , Na url precisamos passar o id do item em que deseja deletar, sendo esse FIXO, INALTERÁVEL**
+
+  **Exemplo:**      `/escritorios/delete/6189d7fb374b2b5c405cf5c1`
+
+- **Utilizamos o delete quando queremos remover algum escritório já cadastrado no banco.**
+
+- **Caso o ID passado exista no banco, ele irá remove-lô do banco, ação irreversível e retornará uma mensagem de confirmação com o status 200.**
+
+  ```javascript
+  res.status(200).json({message: "Deletado com sucesso"});
+  ```
+
+  
+
+- **Porém se o ID passado na url não existir no banco, ele não irá achar nada para deletar assim retornando uma mensagem de erro com status 400.**
+
+  ```javascript
+  return res.status(400).json({message:"ERRO"})
+  ```
+
+
+
+**A rota apartamentos  `/apartamentos`**  **, necessita de 5 sub-rotas sendo elas:**
+
+​       `/add`
+
+- **Exemplo:**    `/apartamentos/add`
+
+- **Usado para adicionar um novo apartamento  ao banco de dados na nuvem.**
+
+- **Para adicionar um apartamento dentro do banco, necessita passar todos os dados com suas devidas informações a seguir:**
+
+  ```javascript
+  {
+  	"tipo": "Apartamento", //(Type: String)
+  	"localizacao":  "Predio das Marias", //(Type: String)
+  	"valor": 135.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+  }
+  ```
+
+  
+
+- **Se for adicionado retornará um .json com todas as informações cadastradas e um status 201.**
+
+  ```javascript
+  res.status(201).json(result);
+  ```
+
+  
+
+- **Caso contrário não for inserido no banco, retornará uma mensagem de erro e um status 400.**
+
+  ```javascript
+  res.status(400).json({message: "ERRO"});
+  ```
+
+
+
+​        **`/listall`**
+
+- **Usado para visualizar todos os apartamentos cadastrados no banco.**
+
+- **Exemplo:**    `/apartamentos/listall`
+
+- **Após ser executado, retornará um .json com todos os apartamentos INCLUINDO UM ID, cada estado possui seu ID criado automaticamente pelo banco.**
+
+  ```javascript
+  {
+      "_id": "6189d7fb374b2b5c405cf5c1",
+  	"tipo": "Apartamento", //(Type: String)
+  	"localizacao":  "Predio das Marias", //(Type: String)
+  	"valor": 135.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+      "dataCriacao": "2021-11-09T02:07:55.479Z",
+      "__v": 0
+  }
+  ```
+
+- **Caso não tenha nada cadastrado no banco, irá retornar um .json vazio.**
+
+  ```javascript
+  [];
+  ```
+
+  
+
+  `/listid/:id`
+
+- **/:nome  , Na url precisamos passar o nome do item que deseja visualizar.**  
+
+  **Exemplo:**      `/apartamentos/listid/6189d7fb374b2b5c405cf5c1`
+
+  ```javascript
+  {
+      "_id": "6189d7fb374b2b5c405cf5c1",
+  	"tipo": "Apartamento", //(Type: String)
+  	"localizacao":  "Predio das Marias", //(Type: String)
+  	"valor": 135.000.00, //(Type: Number)
+  	"imagemUrl": "http://teste.jpeg" //(Type: String)
+      "dataCriacao": "2021-11-09T02:07:55.479Z",
+      "__v": 0
+  }
+  ```
+
+  
+
+- **Usado quando o usuário deseja achar um apartamento específico usando apenas seu nome, sem necessitar de outras informações.**
+
+- **Caso não exista nenhum apartamento cadastrado no banco com o nome procurado, irá retornar um código de erro.**
+
+  ```javascript
+  res.status(204).json({message: "Nada foi encontrado"});
+  ```
+
+
+
+​        `/update/:id`
+
+- **/:id  , Na url precisamos passar o id do item em que deseja atualizar, sendo esse FIXO, INALTERÁVEL**
+
+  **Exemplo:**      `/apartamentos/update/6189d7fb374b2b5c405cf5c1`
+
+- **Usado para atualizar informações já existentes no banco de dados na nuvem.**
+
+- **Para atualizar esses dados é necessário passar todos os dados a seguir COM O ID FIXO (NÃO MUDA), porém com as novas informações que você deseja atualizar:**
+
+  ```javascript
+  {
+  	"tipo": "", //(Type: String)
+  	"localizacao":  "", //(Type: String)
+  	"valor": , //(Type: Number)
+  	"imagemUrl": "" //(Type: String)
   }
   ```
 
@@ -322,13 +788,13 @@
 
   
 
-		**`/delete/:id`** 
+  ​      `/delete/:id`
 
 - **/:id  , Na url precisamos passar o id do item em que deseja atualizar, sendo esse FIXO, INALTERÁVEL**
 
-  **Exemplo:**      `/estados/delete/6189d1efaf6fac25f2977dfb1`
+  **Exemplo:**      `/apartamentos/delete/6189d1efaf6fac25f2977dfb1`
 
-- **Utilizamos o delete quando queremos remover algum país já cadastrado no banco.**
+- **Utilizamos o delete quando queremos remover algum apartamento já cadastrado no banco.**
 
 - **Caso o ID passado exista no banco, ele irá remove-lô do banco, ação irreversível e retornará uma mensagem de confirmação com o status 200.**
 
@@ -341,169 +807,10 @@
 - **Porém se o ID passado na url não existir no banco, ele não irá achar nada para deletar assim retornando uma mensagem de erro com status 400.**
 
   ```javascript
-  res.status(400).json({message: "Algo esta errado"});
+  return res.status(400).json({message:"ERRO"})
   ```
 
 
-
-
-
-**A rota cidades  `/cidades`**  **, necessita de:**
-
-				**`/add`** 
-
-- **Exemplo:**    `/cidades/add`
-
-- **Usado para adicionar uma nova cidade ao banco de dados na nuvem.**
-
-- **Para adicionar uma cidade dentro do banco, necessita passar todos os dados com suas devidas informações a seguir:**
-
-  ```javascript
-  {
-  "nome": "Belo Horizonte",
-  "populacao": "2,722 milhões ",
-  "qntdbair":  487,
-  "nivercidad": "12/12"
-  },
-  ```
-
-  
-
-- **Se for adicionado retornará um .json com uma mensagem de confirmação e um status 200.**
-
-  ```javascript
-  res.status(200).json({message: "Cadastrado com sucesso"});
-  ```
-
-  
-
-- **Caso contrário não for inserido no banco, retornará uma mensagem de erro e um status 400.**
-
-  ```javascript
-  res.status(400).json({message: "Algo esta errado"});
-  ```
-
-
-
-				**`/listall`** 
-
-- **Usado para visualizar todos os países cadastrados no banco.**
-
-- **Exemplo:**    `/cidades/listall`
-
-- **Após ser executado, retornará um .json com todos os países INCLUINDO UM ID, cada estado possui seu ID criado automaticamente pelo banco.**
-
-  ```javascript
-  {
-      "_id": "6189d1acaf6fac25f2977df4",
-      "nome": "Belo Horizonte",
-      "populacao": "2,722 milhões ",
-      "qntdbair": 487,
-      "nivercidad": "12/12",
-      "dataCriacao": "2021-11-09T01:41:00.667Z",
-      "__v": 0
-    }
-  ```
-
-- **Caso não tenha nada cadastrado no banco, irá retornar um .json vazio.**
-
-  ```javascript
-  [];
-  ```
-
-  
-
-				**`/listname/:nome`** 
-
-- **/:nome  , Na url precisamos passar o nome do item que deseja visualizar.**  
-
-  **Exemplo:**      `/cidades/listname/Belo Horizonte`
-
-  ```javascript
-  {
-      "_id": "6189d1acaf6fac25f2977df4",
-      "nome": "Belo Horizonte",
-      "populacao": "2,722 milhões ",
-      "qntdbair": 487,
-      "nivercidad": "12/12",
-      "dataCriacao": "2021-11-09T01:41:00.667Z",
-      "__v": 0
-    }
-  ```
-
-  
-
-- **Usado quando o usuário deseja achar um país específico usando apenas seu nome, sem necessitar de outras informações.**
-
-- **Caso não exista nenhum país cadastrado no banco com o nome procurado, irá retornar um código de erro.**
-
-  ```javascript
-  res.status(204).json({message: "Nada foi encontrado"});
-  ```
-
-
-
-			**`/update/:id`** 
-
-- **/:id  , Na url precisamos passar o id do item em que deseja atualizar, sendo esse FIXO, INALTERÁVEL**
-
-  **Exemplo:**      `/cidades/update/6189d1acaf6fac25f2977df4`
-
-- **Usado para atualizar informações já existentes no banco de dados na nuvem.**
-
-- **Para atualizar esses dados é necessário passar todos os dados a seguir COM O ID FIXO (NÃO MUDA), porém com as novas informações que você deseja atualizar:**
-
-  ```javascript
-  {
-      "_id": "6189d1acaf6fac25f2977df4",
-      "nome": "",
-      "populacao": "",
-      "qntdbair": ,
-      "nivercidad": "",
-      "dataCriacao": "2021-11-09T01:41:00.667Z",
-      "__v": 0
-    }
-  ```
-
-  
-
-- **Se for atualizado retornará um .json com uma mensagem de confirmação e um status 200.**
-
-  ```javascript
-  res.status(200).json({message: "Atualizado com sucesso"});
-  ```
-
-- **Caso contrário não for atualizado no banco, retornará uma mensagem de erro e um status 400.**
-
-  ```javascript
-  res.status(400).json({message: "Algo esta errado"});
-  ```
-
-  
-
-		**`/delete/:id`** 
-
-- **/:id  , Na url precisamos passar o id do item em que deseja atualizar, sendo esse FIXO, INALTERÁVEL**
-
-  **Exemplo:**      `/estados/delete/6189d1acaf6fac25f2977df4`
-
-- **Utilizamos o delete quando queremos remover algum país já cadastrado no banco.**
-
-- **Caso o ID passado exista no banco, ele irá remove-lô do banco, ação irreversível e retornará uma mensagem de confirmação com o status 200.**
-
-  ```javascript
-  res.status(200).json({message: "Deletado com sucesso"});
-  ```
-
-  
-
-- **Porém se o ID passado na url não existir no banco, ele não irá achar nada para deletar assim retornando uma mensagem de erro com status 400.**
-
-  ```javascript
-  res.status(400).json({message: "Algo esta errado"});
-  ```
-
-  
 
 ## **Para Iniciar o Projeto Local Foi Necessário Instalar Os Seguintes Comandos**
 
@@ -521,7 +828,7 @@
 
 - Primeiro deve criar sua conta no Mongo Atlas, após isso:
 
-      **Importando o mongoose no arquivo index.js da pasta conn que fica dentro de outra pasta chamada model**:
+  **Importando o mongoose no arquivo index.js da pasta conn que fica dentro de outra pasta chamada model**:
 
   ```javascript
   const mongoose = require("mongoose"); 
@@ -529,83 +836,119 @@
 
   ****
 
-                            **Então deve definir a string de conexão local ou atlas:**
+  **Então deve definir a string de conexão local ou atlas:**
 
 ```javascript
 async function Conn(){
-    await mongoose.connect("mongodb://localhost:27017/**AQUI VAI O NOME DO SEU PROJETO, IGUAL DEFINIDO NA HORA DA CRIAÇÃO NO MONGO ATLAS**",{ 
+    await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_BASE}`,{ // Informações definidas no seu .env (PRIVADAS)	
         useNewUrlParser: true,
         useUnifiedTopology: true,
-    }).then(() => { // tudo certo faz isso
+    }).then(() => {  // tudo certo faz isso
         console.log("MongoDB esta conectado");
-    }).catch((err) => { // caso de erro faz isso
+    }).catch((err) => {  // caso de erro faz isso
         console.error(err);
     });
-}
+};
+
+module.exports = Conn;
 ```
 
-## **Na pasta model temos 3 arquivos diferentes com suas seguintes definições e valores:**
+## **Na pasta model temos 5 arquivos diferentes com as mesmas definições e valores:**
 
-                                                                             **`cidades.js`**
+**`casaSchema.js`**
 
 ```javascript
 const mongoose = require("mongoose");  //importando o mongoose
 
-const cidadesModel = new mongoose.Schema({ //criando nosso modelo do banco
-    nome: { type: String, required: true }, // chave/ valor: tipo do valor e se é obrigatorio
-    quantidadebairros: { type: String, required: true },
-    populacao: { type: String, required: true }, 
-    aniversariocidade: { type: String, required: true },
-    dataCriacao: { type: Date, default: Date.now } //default, valor padrao caso nao seja passado
+const casasSchema = new mongoose.Schema({  //criando nosso modelo do banco
+    // chave/ valor: tipo do valor e se é obrigatorio
+    tipo: { type: String, required: true },
+    localizacao: { type: String, required: true }, 
+    valor: { type: String, required: true },
+    imagemUrl: { type: String, required: true } 
 });
 
-const Cidade = mongoose.model("Cidades",cidadesModel); // a criacao do modelo na colection Cidades
+const Casa = mongoose.model("casas", schemaCasa);  // a criacao do modelo na colection Casas
 
-module.exports = Cidade; //exportando o modelo pronto
+module.exports = Casa; //exportando o modelo pronto
 ```
 
-                                                                        **`estados.js`**
+**`terrenoSchema.js`**
 
 ```javascript
-const mongoose = require("mongoose"); 
+const mongoose = require('mongoose');  //importando o mongoose
 
-const estadosModel = new mongoose.Schema({ 
-    nome: { type: String, required: true }, 
-    regiao: { type: String, required: true }, 
-    populacao: { type: String, required: true }, 
-    valsalmin: { type: String, required: true }, 
-    dataCriacao: { type: Date, default: Date.now }  
+const schemaTerreno = new mongoose.Schema({  //criando nosso modelo do banco
+    // chave/ valor: tipo do valor e se é obrigatorio
+    tipo: { type: String, required: true},
+    localizacao: { type: String, required: true},
+    valor: { type: Number, required: true},
+    imagemUrl: { type: String, required: true},
 });
 
-const Estado = mongoose.model("Estados", estadosModel); 
+const Terreno = mongoose.model("terrenos", schemaTerreno);  // a criacao do modelo na colection Casas
 
-module.exports = Estado; 
+module.exports = Terreno;  //exportando o modelo pronto
 ```
 
-                                                                        **`pais.js`**
+**`galpaoSchema.js`**
 
 ```javascript
-const mongoose = require("mongoose"); 
+const mongoose = require('mongoose');  //importando o mongoose
 
-const paisesModel = new mongoose.Schema({ 
-    nome: { type: String, required: true }, 
-    populacao: { type: String, required: true }, 
-    linguamae: { type: String, required: true }, 
-    pib: { type: String, required: true }, 
-    dataCriacao: { type: Date, default: Date.now } 
+const schemaGalpao = new mongoose.Schema({  //criando nosso modelo do banco
+    // chave/ valor: tipo do valor e se é obrigatorio
+    tipo: { type: String, required: true},
+    localizacao: { type: String, required: true},
+    valor: { type: Number, required: true},
+    imagemUrl: { type: String, required: true},
 });
+ 
+const Galpao = mongoose.model("galpoes", schemaGalpao);  // a criacao do modelo na colection Casas
 
-const Pais = mongoose.model("Paises", paisesModel); 
-
-module.exports = Pais; 
+module.exports = Galpao;  //exportando o modelo pronto
 ```
 
-Lembrando que a **const paisesModel = new mongoose.Schema({ });** cria uma API em seu banco automaticamente caso não exista.
+**`escritorioSchema.js`**
+
+```javascript
+const mongoose = require('mongoose');  //importando o mongoose
+
+const schemaEscritorio = new mongoose.Schema({  //criando nosso modelo do banco
+    // chave/ valor: tipo do valor e se é obrigatorio
+    tipo: { type: String, required: true},
+    localizacao: { type: String, required: true},
+    valor: { type: Number, required: true},
+    imagemUrl: { type: String, required: true},
+});
+
+const Escritorio = mongoose.model("escritorios", schemaEscritorio);  // a criacao do modelo na colection Casas
+
+module.exports = Escritorio;  //exportando o modelo pronto
+```
+
+**`apartamentoSchema.js`**
+
+```javascript
+const mongoose = require('mongoose');  //importando o mongoose
+ 
+const schemaApartamento = new mongoose.Schema({  //criando nosso modelo do banco
+    // chave/ valor: tipo do valor e se é obrigatorio
+    tipo: { type: String, required: true},
+    localizacao: { type: String, required: true},
+    valor: { type: Number, required: true},
+    imagemUrl: { type: String, required: true},
+});
+
+const Apartamento = mongoose.model("apartamentos", schemaApartamento);  // a criacao do modelo na colection Casas
+
+module.exports = Apartamento;  //exportando o modelo pronto
+```
 
 
 
-#####                                                                                                    Trabalho Realizado em Dupla:
+###                                                                                                     Trabalho Realizado em Dupla:
 
-                                                               Felipe Pádua e Wellington Nascimento
+##      **Felipe Pádua e Nikolas Furuta **
 
-######                      Esperamos ter ajudado na compreensão básica de como funciona este projeto e o que consta em suas dependencias internas.
+####                      Esperamos ter ajudado na compreensão básica de como funciona este projeto e o que consta em suas dependências internas.
