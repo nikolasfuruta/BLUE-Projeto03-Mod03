@@ -1,4 +1,4 @@
-const ApartamentoController = require('')
+const ApartamentoController = require('../controllers/apartamentoController');
 const { Router } = require('express');
 const router = Router()
 

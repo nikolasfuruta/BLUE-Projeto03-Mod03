@@ -1,4 +1,4 @@
-const EscritorioController = require('')
+const EscritorioController = require('../controllers/escritorioController');
 const { Router } = require('express');
 const router = Router()
 

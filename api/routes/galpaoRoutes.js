@@ -1,4 +1,4 @@
-const GalpaController = require('')
+const GalpaController = require('../controllers/galpaoController')
 const { Router } = require('express');
 const router = Router()
 

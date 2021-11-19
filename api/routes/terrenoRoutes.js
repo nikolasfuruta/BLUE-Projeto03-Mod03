@@ -1,4 +1,4 @@
-const TerrenoController = require('')
+const TerrenoController = require('../controllers/terrenoController');
 const { Router } = require('express');
 const router = Router()
 
