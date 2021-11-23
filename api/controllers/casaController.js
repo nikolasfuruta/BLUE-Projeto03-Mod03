@@ -17,7 +17,7 @@ exports.adicionar = async (req,res) => {
             return;
         };
         const result = await Casa.create(req.body)
-        return res.status(201).json(result)
+        return res.status(201).json({message:"CADASTRADO COM SUCESSO"})
     } catch(err){
         console.error(err.message)
         return res.status(400).json({message:"ERRO"})
